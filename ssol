@@ -1,0 +1,17 @@
+#البته! اینجا یک مثال ساده برای یک قرارداد هوشمند Solidity در مورد بلاکچین Ethereum است:#
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract SimpleBlockchain {
+    mapping(address => uint) public balances;
+
+    event Transfer(address indexed from, address indexed to, uint value);
+
+    function transfer(address to, uint value) public {
+        require(balances[msg.sender] >= value, "Insufficient balance");
+        balances[msg.sender] -= value;
+        balances[to] += value;
+        emit Transfer(msg.sender, to, value);
+    }
+}
+#این قرارداد ساده یک بلاکچین ساده را پیاده‌سازی می‌کند که امکان انتقال واحد پول بین حساب‌های کاربران را فراهم می‌کند#
